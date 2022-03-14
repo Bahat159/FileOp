@@ -36,32 +36,7 @@ Project Type: Open-source
 #endif
 
 
+static int close_opened_file(int fd);
+static void check_file_descriptor(char file_perm);
 static void check_file_permission_type(char file_perm);
-
-static void check_file_descriptor(char file_perm) {
-    if (file_perm == O_RDONLY){
-        std::cout<<"O_RDONLY File Descriptor: "<<READ_ONLY<<std::endl;
-    }
-}
-
-static void create_new_file(const char *path, mode_t mode) {
-    /* 
-    TODO
-    Check if file already exist
-    */
-    int file_to_create = creat(path,mode);
-    if (file_to_create != -1) {
-        std::cout<<"["<<path<<"] created successfully with: "<<mode<<" Descriptor"<<std::endl;
-    } else {
-        std::cout<<"Error creating filename: "<<path<<std::endl;
-    }
-}
-
-static int close_opened_file(int fd) {
-    int closed_fd = close(fd);
-    if(closed_fd == 0) {
-        return 0;
-    } else {
-        return -1;
-    }
-}
+static void create_new_file(const char *path, mode_t mode);
