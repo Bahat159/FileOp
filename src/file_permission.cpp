@@ -6,7 +6,15 @@ static void check_file_permission_type(char file_perm) {
     case READ_ONLY:
         std::cout <<"READ_ONLY"<<std::endl;
         break;
-    
+    case WRITE_ONLY:
+        std::cout <<"WRITE_ONLY"<<std::endl;
+        break;
+    case READ_WRITE:
+        std::cout <<"READ_WRITE"<<std::endl;
+        break;
+    case CREATE_ONLY:
+        std::cout <<"CREATE_ONLY"<<std::endl;
+        break;
     default:
         std::cout <<"Unknown file permission type"<<std::endl;
         break;
