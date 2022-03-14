@@ -1,3 +1,4 @@
+#include <iostream>
 #include "file_io.h"
 
 static void check_file_permission_type(char file_perm) {
