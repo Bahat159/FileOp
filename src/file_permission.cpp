@@ -12,3 +12,9 @@ static void check_file_permission_type(char file_perm) {
         break;
     }
 }
+
+static void check_file_descriptor(char file_perm) {
+    if (file_perm == O_RDONLY){
+        std::cout<<"O_RDONLY File Descriptor: "<<READ_ONLY<<std::endl;
+    }
+}
