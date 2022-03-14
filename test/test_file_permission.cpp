@@ -12,7 +12,6 @@ int main() {
     std::cout<<"File I/O Operation Call" <<std::endl;
   
     check_file_permission_type(READ_ONLY);
-    check_file_descriptor(READ_ONLY);
 
     return 0;
 }
