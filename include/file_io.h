@@ -42,13 +42,13 @@ Project Type: Open-source
 #define FILE_IO_ERROR         -1
 #endif
 #ifndef FILE_IO_MULTIPLE_FLAGS
-#define MULTIPLE_FLAGS        (READ_WRITE | O_CREAT | O_TRUNC)
+#define FILE_IO_MULTIPLE_FLAGS        (FILE_IO_PERM_READ_WRITE | FILE_IO_PERM_CREATE_ONLY | FILE_IO_PERM_TRUNCATE_ONLY)
 #endif
 
-#ifndef FILE_IO_SEEK_POS
-#define SEEK_TO_BEGINNING      SEEK_SET
-#define SEEK_TO_CURR_VAL       SEEK_CUR
-#define SEEK_TO_EOF            SEEK_END
+#ifndef FILE_IO_SEEK_
+#define FILE_IO_SEEK_TO_BEGINNING      SEEK_SET
+#define FILE_IO_SEEK_TO_CURR_VAL       SEEK_CUR
+#define FILE_IO_SEEK_TO_EOF            SEEK_END
 #endif
 
 #ifndef FILE_IO_BUFSIZE
