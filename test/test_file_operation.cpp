@@ -14,8 +14,8 @@ int main() {
     const char *create_file_name= "create_file_name";
     const char *open_file_name= "open_file_name";
     
-    int fd = create_new_file(create_file_name, MULTIPLE_FLAGS); 
-    int fds = open_new_file(open_file_name, MULTIPLE_FLAGS);
+    int fd = create_new_file(create_file_name, FILE_IO_PERM_READ_WRITE); 
+    int fds = open_new_file(open_file_name, FILE_IO_PERM_CREATE_ONLY);
     std::cout<<"open_new_file Returned value: "<<fds<<std::endl;
     
     
