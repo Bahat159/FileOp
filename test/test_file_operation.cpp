@@ -1,6 +1,6 @@
-#include "file_io.h"
-#include "file_permission.cpp"
-#include "file_operation.cpp"
+#include "../include/file_io.h"
+#include "../src/file_permission.cpp"
+#include "../src/file_operation.cpp"
 
 /*
 Author: Busari Habibullaah
