@@ -39,6 +39,7 @@ Project Type: Open-source
 #ifndef FILE_IO_NULL
 #define FILE_IO_NULL    '\0'
 #endif
+#define FILE_IO_ERROR -1
 
 #ifndef FILE_IO_MULTIPLE_FLAGS
 #define MULTIPLE_FLAGS (READ_WRITE | O_CREAT | O_TRUNC)
@@ -50,6 +51,12 @@ Project Type: Open-source
 #define SEEK_TO_EOF             SEEK_END
 #endif
 
+#ifndef FILE_IO_BUFSIZE
+#define FILE_IO_BUFSIZE 4096
+#endif
+
+
+
 static int close_opened_file(int fd);
 static void check_file_descriptor(char fd);
 static void check_file_permission_type(char file_perm);
@@ -57,3 +64,4 @@ static int create_new_file(const char *path, mode_t mode);
 static int open_new_file(const char *path, int oflag);
 static int open_file_with_fd(int fd, const char *path, int oflag);
 static off_t seek_file_to_offset(int fd, off_t offset, int whence);
+static ssize_t read_from_file(int fd, void *buf, size_t nbytes);
