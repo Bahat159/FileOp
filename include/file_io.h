@@ -65,3 +65,4 @@ static off_t seek_file_to_offset(int fd, off_t offset, int whence);
 static ssize_t read_from_file(int fd, void *buf, size_t nbytes);
 static ssize_t write_to_file(int fd, const void *buf, size_t nbytes);
 static ssize_t pread_with_multiple_process(int fd, void *buf, size_t nbytes, off_t offset);
+static ssize_t pwrite_with_multiple_process(int fd, const void *buf, size_t nbytes, off_t offset);
