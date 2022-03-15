@@ -17,6 +17,9 @@ static void create_new_file(const char *path, mode_t mode) {
 /* 
 Example usage of oflag
 open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);
+open(path, WRITE_ONLY);
+open(path, READ_ONLY);
+open(path, READ_WRITE);
 */
 static void open_new_file(const char *path, int oflag, ...) {
     if (path && oflag != NULL) {
