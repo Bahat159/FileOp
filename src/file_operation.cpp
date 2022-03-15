@@ -1,4 +1,4 @@
-#include "file_io.h"
+#include "../include/file_io.h"
 
 /*
 Author: Busari Habibullaah
@@ -117,16 +117,29 @@ static ssize_t write_to_file(int fd, const void *buf, size_t nbytes) {
 */
 
 static ssize_t pread_with_multiple_process(int fd, void *buf, size_t nbytes, off_t offset) {
-    ssize_t pread_multiple_process;
+    ssize_t pread_to_multiple_process;
     if(fd && buf && nbytes && offset != FILE_IO_E_NULL) {
-        pread_multiple_process =  pread(fd, buf, nbytes, offset);
-        if(pread_multiple_process > FILE_IO_E_NULL) {
-            return pread_multiple_process;
-        } else if (pread_multiple_process == FILE_IO_E_NULL) {
+        pread_to_multiple_process =  pread(fd, buf, nbytes, offset);
+        if(pread_to_multiple_process > FILE_IO_E_NULL) {
+            return pread_to_multiple_process;
+        } else if (pread_to_multiple_process == FILE_IO_E_NULL) {
             return FILE_IO_E_EOF;
-        } else if( pread_multiple_process == FILE_IO_E_ERROR) {
+        } else if( pread_to_multiple_process == FILE_IO_E_ERROR) {
             return FILE_IO_E_ERROR;
         }
     }
-    return pread_multiple_process;
+    return pread_to_multiple_process;
+}
+
+static ssize_t pwrite_with_multiple_process(int fd, const void *buf, size_t nbytes, off_t offset) {
+    ssize_t pwrite_to_multiple_process;
+    if(fd && buf && nbytes && offset != FILE_IO_E_NULL) {
+        pwrite_to_multiple_process = pwrite(fd, buf, nbytes, offset);
+        if(pwrite_to_multiple_process > FILE_IO_E_NULL) {
+            return pwrite_to_multiple_process;
+        } else if (pwrite_to_multiple_process == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return pwrite_to_multiple_process;
 }
