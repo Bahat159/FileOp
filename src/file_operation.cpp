@@ -143,3 +143,33 @@ static ssize_t pwrite_with_multiple_process(int fd, const void *buf, size_t nbyt
     }
     return pwrite_to_multiple_process;
 }
+
+
+static int duplicate_file_descriptor(int fd) {
+    int file_descriptor_id;
+    if (fd != FILE_IO_E_NULL) {
+        file_descriptor_id = dup(fd);
+        if (file_descriptor_id != FILE_IO_E_NULL) {
+            return file_descriptor_id;
+        } else {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return file_descriptor_id;
+}
+
+static int duplicate_file_descriptor(int old_fd, int new_fd) {
+    int declare_new_file_descriptor;
+    if (old_fd && new_fd != FILE_IO_E_NULL) {
+        if (old_fd == new_fd) {
+            return new_fd;
+        }
+        declare_new_file_descriptor = dup2(old_fd, new_fd);
+        if (declare_new_file_descriptor != FILE_IO_E_ERROR) {
+            return declare_new_file_descriptor;
+        } else {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return declare_new_file_descriptor;
+}
