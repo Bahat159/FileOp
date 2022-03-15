@@ -7,7 +7,7 @@ static int create_new_file(const char *path, mode_t mode) {
     Check if file already exist
     */
     int file_to_create = creat(path,mode);
-    if (file_to_create != FILE_IO_ERROR) {
+    if (file_to_create != FILE_IO_E_ERROR) {
         std::cout<<"["<<path<<"] created successfully with: "<<mode<<" Descriptor"<<std::endl;
     } else {
         std::cout<<"Error creating filename: "<<path<<std::endl;
@@ -25,14 +25,14 @@ open(path, READ_WRITE);
 */
 static int open_new_file(const char *path, int oflag) {
     int opened_file;
-    if (path && oflag != FILE_IO_NULL) {
+    if (path && oflag != FILE_IO_E_NULL) {
         opened_file = open(path, oflag);
         if (opened_file) {
             std::cout<<"File opened successfully" <<std::endl;
             return opened_file;
-        } else if( opened_file == FILE_IO_ERROR) {
+        } else if( opened_file == FILE_IO_E_ERROR) {
             std::cout<<"Error opening file"<<std::endl;
-            return FILE_IO_ERROR;
+            return FILE_IO_E_ERROR;
         }
     }
     return opened_file;
@@ -40,14 +40,14 @@ static int open_new_file(const char *path, int oflag) {
 
 static int open_file_with_fd(int fd, const char *path, int oflag) {
     int open_with_fd;
-    if (fd && path && oflag != FILE_IO_NULL) {
+    if (fd && path && oflag != FILE_IO_E_NULL) {
         open_with_fd = openat(fd, path, oflag);
         if(open_with_fd) {
             std::cout <<"File opened successfully"<<std::endl;
             return open_with_fd;
-        } else if(open_with_fd == FILE_IO_ERROR) {
+        } else if(open_with_fd == FILE_IO_E_ERROR) {
             std::cout<<"Error opening file with descriptor"<<std::endl;
-            return FILE_IO_ERROR;
+            return FILE_IO_E_ERROR;
         }
     }
     return open_with_fd;
@@ -55,19 +55,19 @@ static int open_file_with_fd(int fd, const char *path, int oflag) {
 
 static int close_opened_file(int fd) {
     int closed_fd = close(fd);
-    if(closed_fd == FILE_IO_NULL) {
-        return FILE_IO_NULL;
+    if(closed_fd == FILE_IO_E_NULL) {
+        return FILE_IO_E_NULL;
     } else {
-        return FILE_IO_ERROR;
+        return FILE_IO_E_ERROR;
     }
 }
 
 static off_t seek_file_to_offset(int fd, off_t offset, int whence) {
     off_t seek_pos;
-    if(fd && offset != FILE_IO_NULL) {
+    if(fd && offset != FILE_IO_E_NULL) {
         seek_pos = lseek(fd, offset, whence);
-        if(seek_pos != FILE_IO_ERROR) {
-            return FILE_IO_ERROR;
+        if(seek_pos != FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
         } else {
             return seek_pos;
         }
@@ -77,14 +77,14 @@ static off_t seek_file_to_offset(int fd, off_t offset, int whence) {
 
 static ssize_t read_from_file(int fd, void *buf, size_t nbytes) {
     ssize_t bytes_read;
-    if(fd && buf && nbytes != FILE_IO_NULL){
+    if(fd && buf && nbytes != FILE_IO_E_NULL){
         bytes_read = read(fd, buf,  nbytes);
-        if (bytes_read > FILE_IO_NULL) {
+        if (bytes_read > FILE_IO_E_NULL) {
             return bytes_read;
-        } else if (bytes_read == FILE_IO_NULL) {
+        } else if (bytes_read == FILE_IO_E_NULL) {
             return EOF;
-        } else if( bytes_read == FILE_IO_ERROR) {
-            return FILE_IO_ERROR;
+        } else if( bytes_read == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
         }
     }
     return bytes_read;
