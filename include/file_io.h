@@ -37,7 +37,7 @@ Project Type: Open-source
 #endif
 
 #ifndef FILE_IO_NULL
-#define FILE_IO_NULL    0
+#define FILE_IO_NULL    '\0'
 #endif
 
 #ifndef FILE_IO_MULTIPLE_FLAGS
