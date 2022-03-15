@@ -41,7 +41,7 @@ Project Type: Open-source
 #endif
 
 #ifndef FILE_IO_MULTIPLE_FLAGS
-#define MULTIPLE_FLAGS (O_WRONLY | O_CREAT | O_TRUNC)
+#define MULTIPLE_FLAGS (READ_WRITE | O_CREAT | O_TRUNC)
 #endif
 
 #ifndef FILE_IO_SEEK_POS
@@ -53,7 +53,7 @@ Project Type: Open-source
 static int close_opened_file(int fd);
 static void check_file_descriptor(char fd);
 static void check_file_permission_type(char file_perm);
-static void create_new_file(const char *path, mode_t mode);
-static void open_new_file(const char *path, int oflag);
-static void open_file_with_fd(int fd, const char *path, int oflag);
+static int create_new_file(const char *path, mode_t mode);
+static int open_new_file(const char *path, int oflag);
+static int open_file_with_fd(int fd, const char *path, int oflag);
 static off_t seek_file_to_offset(int fd, off_t offset, int whence);
