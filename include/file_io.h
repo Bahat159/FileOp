@@ -12,27 +12,26 @@ Project Type: Open-source
 
 /* File permission */
 
-#ifndef FILE_IO_PERM
-#define FILE_IO_PERM
+#ifndef FILE_IO_PERM_
 
-#define READ_ONLY           O_RDONLY
-#define WRITE_ONLY          O_WRONLY    
-#define READ_WRITE          O_RDWR      
-#define EXECUTE_ONLY        O_EXEC   
-#define SEARCH_ONLY         O_SEARCH    
-#define APPEND_ONLY         O_APPEND    
-#define CLOSE_EXECTUE       O_CLOEXEC   
-#define CREATE_ONLY         O_CREAT     
-#define DIRECTORY_ONLY      O_DIRECTORY 
-#define CHECK_FILE_EXIST    O_EXCL      
-#define NOCTTY_ONLY         O_NOCTTY    
-#define NO_FOLLOW           O_NOFOLLOW  
-#define NON_BLOCKING        O_NONBLOCK  
-#define SYNC_ONLY           O_SYNC      
-#define TRUNCATE_ONLY       O_TRUNC     
-#define INIT_TTY            O_TTY_INIT  
-#define DESYNC_ONLY         O_DSYNC     
-#define RESYNC_ONLY         O_RSYNC     
+#define FILE_IO_PERM_READ_ONLY           O_RDONLY
+#define FILE_IO_PERM_WRITE_ONLY          O_WRONLY    
+#define FILE_IO_PERM_READ_WRITE          O_RDWR      
+#define FILE_IO_PERM_EXECUTE_ONLY        O_EXEC   
+#define FILE_IO_PERM_SEARCH_ONLY         O_SEARCH    
+#define FILE_IO_PERM_APPEND_ONLY         O_APPEND    
+#define FILE_IO_PERM_CLOSE_EXECTUE       O_CLOEXEC   
+#define FILE_IO_PERM_CREATE_ONLY         O_CREAT     
+#define FILE_IO_PERM_DIRECTORY_ONLY      O_DIRECTORY 
+#define FILE_IO_PERM_CHECK_FILE_EXIST    O_EXCL      
+#define FILE_IO_PERM_NOCTTY_ONLY         O_NOCTTY    
+#define FILE_IO_PERM_NO_FOLLOW           O_NOFOLLOW  
+#define FILE_IO_PERM_NON_BLOCKING        O_NONBLOCK  
+#define FILE_IO_PERM_SYNC_ONLY           O_SYNC      
+#define FILE_IO_PERM_TRUNCATE_ONLY       O_TRUNC     
+#define FILE_IO_PERM_INIT_TTY            O_TTY_INIT  
+#define FILE_IO_PERM_DESYNC_ONLY         O_DSYNC     
+#define FILE_IO_PERM_RESYNC_ONLY         O_RSYNC     
 
 #endif
 
