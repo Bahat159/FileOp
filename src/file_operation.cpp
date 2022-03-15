@@ -1,4 +1,4 @@
-#include "../include/file_io.h"
+#include "file_io.h"
 
 /*
 Author: Busari Habibullaah
@@ -172,4 +172,37 @@ static int duplicate_file_descriptor(int old_fd, int new_fd) {
         }
     }
     return declare_new_file_descriptor;
+}
+
+/* 
+    With fsync, the file’s attributes are also updated synchronously 
+*/
+static int fsync_disk_io_buffercache_or_pagecache(int fd) {
+    int fsync_disk_data;
+    if (fd != FILE_IO_E_NULL) {
+        fsync_disk_data = fsync(fd);
+        if (fsync_disk_data == FILE_IO_E_NULL) {
+            return fsync_disk_data;
+        } else if (fsync_disk_data == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return fsync_disk_data;
+}
+
+/*
+    The fdatasync function is similar to fsync, 
+    but it affects only the data portions of a file. 
+*/
+static int fdatasync_file_data(int fd) {
+    int file_data_sync;
+    if (fd != FILE_IO_E_NULL) {
+        file_data_sync = fdatasync(fd);
+        if(file_data_sync == FILE_IO_E_NULL) {
+            return file_data_sync;
+        } else if(file_data_sync == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return file_data_sync;
 }
