@@ -21,13 +21,24 @@ open(path, WRITE_ONLY);
 open(path, READ_ONLY);
 open(path, READ_WRITE);
 */
-static void open_new_file(const char *path, int oflag, ...) {
-    if (path && oflag != NULL) {
-        int opened_file = open(path, oflag, ...);
+static void open_new_file(const char *path, int oflag) {
+    if (path && oflag != FILE_IO_NULL) {
+        int opened_file = open(path, oflag);
         if (opened_file) {
-            std::cout<<"File opened successfully" <<std::end;
+            std::cout<<"File opened successfully" <<std::endl;
         } else if( opened_file == -1) {
             std::cout<<"Error opening file"<<std::endl;
+        }
+    }
+}
+
+static void open_file_with_fd(int fd, const char *path, int oflag) {
+    if (fd && path && oflag != FILE_IO_NULL) {
+        int open_with_fd = openat(fd, path, oflag);
+        if(open_with_fd) {
+            std::cout <<"File opened successfully"<<std::endl;
+        } else if(open_with_fd == -1) {
+            std::cout<<"Error opening file with descriptor"<<std::endl;
         }
     }
 }
