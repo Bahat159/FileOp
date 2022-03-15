@@ -35,12 +35,11 @@ Project Type: Open-source
 
 #endif
 
-#ifndef FILE_IO_NULL
-#define FILE_IO_NULL         '\0'
+#ifndef FILE_IO_E_
+#define FILE_IO_E_NULL         '\0'
+#define FILE_IO_E_ERROR        -1
 #endif
-#ifndef FILE_IO_ERROR
-#define FILE_IO_ERROR         -1
-#endif
+
 #ifndef FILE_IO_MULTIPLE_FLAGS
 #define FILE_IO_MULTIPLE_FLAGS        (FILE_IO_PERM_READ_WRITE | FILE_IO_PERM_CREATE_ONLY | FILE_IO_PERM_TRUNCATE_ONLY)
 #endif
@@ -65,3 +64,4 @@ static int open_new_file(const char *path, int oflag);
 static int open_file_with_fd(int fd, const char *path, int oflag);
 static off_t seek_file_to_offset(int fd, off_t offset, int whence);
 static ssize_t read_from_file(int fd, void *buf, size_t nbytes);
+static ssize_t write_to_file(int fd, const void *buf, size_t nbytes);
