@@ -1,5 +1,4 @@
 #include "../include/file_io.h"
-#include "../src/file_permission.cpp"
 #include "../src/file_operation.cpp"
 
 /*
@@ -14,10 +13,6 @@ int main() {
 
     const char *create_file_name= "create_file_name";
     const char *open_file_name= "open_file_name";
-    /*
-    check_file_permission_type(READ_WRITE);
-    check_file_descriptor(CREATE_ONLY);
-    */
     
     int fd = create_new_file(create_file_name, MULTIPLE_FLAGS); 
     int fds = open_new_file(open_file_name, MULTIPLE_FLAGS);
