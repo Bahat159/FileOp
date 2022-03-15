@@ -1,5 +1,11 @@
 #include "file_io.h"
 
+/*
+Author: Busari Habibullaah
+Year: March, 2022
+Copyright: SandCroft Software
+Project Type: Open-source 
+*/
 
 static int create_new_file(const char *path, mode_t mode) {
     /* 
