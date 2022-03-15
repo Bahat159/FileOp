@@ -44,3 +44,11 @@ static void write_seek_file_for_single_process(int fd, void *buffer0, void *buff
         std::cout<<write_file0<<" Bytes written to: "<<fd<<std::endl;
     }
 }
+
+
+static void duplicate_process_file_descriptor (int fd) {
+    int current_fd =  duplicate_file_descriptor(fd);
+    if(current_fd) {
+        std::cout<<"duplicate_file_descriptor for create_new_file returned: "<<current_fd<<std::endl;
+    }
+}
