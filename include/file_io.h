@@ -18,7 +18,7 @@ Project Type: Open-source
 #define READ_ONLY           O_RDONLY
 #define WRITE_ONLY          O_WRONLY    
 #define READ_WRITE          O_RDWR      
-#define EXECUTE_ONLY        O_EXEC      
+#define EXECUTE_ONLY        O_EXEC   
 #define SEARCH_ONLY         O_SEARCH    
 #define APPEND_ONLY         O_APPEND    
 #define CLOSE_EXECTUE       O_CLOEXEC   
@@ -36,8 +36,17 @@ Project Type: Open-source
 
 #endif
 
+#ifndef FILE_IO_NULL
+#define FILE_IO_NULL    0
+#endif
+
+#ifndef FILE_IO_MULTIPLE_FLAGS
+#define MULTIPLE_FLAGS (O_WRONLY | O_CREAT | O_TRUNC)
+#endif
 
 static int close_opened_file(int fd);
-static void check_file_descriptor(char file_perm);
+static void check_file_descriptor(char fd);
 static void check_file_permission_type(char file_perm);
 static void create_new_file(const char *path, mode_t mode);
+static void open_new_file(const char *path, int oflag);
+static void open_file_with_fd(int fd, const char *path, int oflag);
