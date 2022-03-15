@@ -13,7 +13,6 @@ Project Type: Open-source
 /* File permission */
 
 #ifndef FILE_IO_PERM_
-
 #define FILE_IO_PERM_READ_ONLY           O_RDONLY
 #define FILE_IO_PERM_WRITE_ONLY          O_WRONLY    
 #define FILE_IO_PERM_READ_WRITE          O_RDWR      
@@ -32,12 +31,12 @@ Project Type: Open-source
 #define FILE_IO_PERM_INIT_TTY            O_TTY_INIT  
 #define FILE_IO_PERM_DESYNC_ONLY         O_DSYNC     
 #define FILE_IO_PERM_RESYNC_ONLY         O_RSYNC     
-
 #endif
 
-#ifndef FILE_IO_E_
-#define FILE_IO_E_NULL         '\0'
-#define FILE_IO_E_ERROR        -1
+#ifndef FILE_IO_
+#define FILE_IO_E_NULL                  '\0'
+#define FILE_IO_E_ERROR                 -1
+#define FILE_IO_E_EOF                   EOF
 #endif
 
 #ifndef FILE_IO_MULTIPLE_FLAGS
@@ -51,7 +50,7 @@ Project Type: Open-source
 #endif
 
 #ifndef FILE_IO_BUFSIZE
-#define FILE_IO_BUFSIZE        4096
+#define FILE_IO_BUFSIZE                4096
 #endif
 
 
@@ -65,3 +64,4 @@ static int open_file_with_fd(int fd, const char *path, int oflag);
 static off_t seek_file_to_offset(int fd, off_t offset, int whence);
 static ssize_t read_from_file(int fd, void *buf, size_t nbytes);
 static ssize_t write_to_file(int fd, const void *buf, size_t nbytes);
+static ssize_t pread_with_multiple_process(int fd, void *buf, size_t nbytes, off_t offset);
