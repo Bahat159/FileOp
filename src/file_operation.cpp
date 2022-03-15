@@ -7,7 +7,7 @@ static int create_new_file(const char *path, mode_t mode) {
     Check if file already exist
     */
     int file_to_create = creat(path,mode);
-    if (file_to_create != -1) {
+    if (file_to_create != FILE_IO_ERROR) {
         std::cout<<"["<<path<<"] created successfully with: "<<mode<<" Descriptor"<<std::endl;
     } else {
         std::cout<<"Error creating filename: "<<path<<std::endl;
@@ -30,7 +30,7 @@ static int open_new_file(const char *path, int oflag) {
         if (opened_file) {
             std::cout<<"File opened successfully" <<std::endl;
             return opened_file;
-        } else if( opened_file == -1) {
+        } else if( opened_file == FILE_IO_ERROR) {
             std::cout<<"Error opening file"<<std::endl;
             return -1;
         }
@@ -45,7 +45,7 @@ static int open_file_with_fd(int fd, const char *path, int oflag) {
         if(open_with_fd) {
             std::cout <<"File opened successfully"<<std::endl;
             return open_with_fd;
-        } else if(open_with_fd == -1) {
+        } else if(open_with_fd == FILE_IO_ERROR) {
             std::cout<<"Error opening file with descriptor"<<std::endl;
             return -1;
         }
@@ -55,7 +55,7 @@ static int open_file_with_fd(int fd, const char *path, int oflag) {
 
 static int close_opened_file(int fd) {
     int closed_fd = close(fd);
-    if(closed_fd == 0) {
+    if(closed_fd == FILE_IO_NULL) {
         return 0;
     } else {
         return -1;
@@ -66,11 +66,26 @@ static off_t seek_file_to_offset(int fd, off_t offset, int whence) {
     off_t seek_pos;
     if(fd && offset != FILE_IO_NULL) {
         seek_pos = lseek(fd, offset, whence);
-        if(seek_pos != -1) {
+        if(seek_pos != FILE_IO_ERROR) {
             return -1;
         } else {
             return seek_pos;
         }
     }
     return seek_pos;
+}
+
+static ssize_t read_from_file(int fd, void *buf, size_t nbytes) {
+    ssize_t bytes_read;
+    if(fd && buf && nbytes != FILE_IO_NULL){
+        bytes_read = read(fd, buf,  nbytes);
+        if (bytes_read > 0) {
+            return bytes_read;
+        } else if (bytes_read == FILE_IO_NULL) {
+            return EOF;
+        } else if( bytes_read == FILE_IO_ERROR) {
+            return -1;
+        }
+    }
+    return bytes_read;
 }
