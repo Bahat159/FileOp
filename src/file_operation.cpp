@@ -51,3 +51,16 @@ static int close_opened_file(int fd) {
         return -1;
     }
 }
+
+static off_t seek_file_to_offset(int fd, off_t offset, int whence) {
+    off_t seek_pos;
+    if(fd && offset != FILE_IO_NULL) {
+        seek_pos = lseek(fd, offset, whence);
+        if(seek_pos != -1) {
+            return -1;
+        } else {
+            return seek_pos;
+        }
+    }
+    return seek_pos;
+}
