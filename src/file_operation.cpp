@@ -14,6 +14,21 @@ static void create_new_file(const char *path, mode_t mode) {
     }
 }
 
+/* 
+Example usage of oflag
+open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);
+*/
+static void open_new_file(const char *path, int oflag, ...) {
+    if (path && oflag != NULL) {
+        int opened_file = open(path, oflag, ...);
+        if (opened_file) {
+            std::cout<<"File opened successfully" <<std::end;
+        } else if( opened_file == -1) {
+            std::cout<<"Error opening file"<<std::endl;
+        }
+    }
+}
+
 static int close_opened_file(int fd) {
     int closed_fd = close(fd);
     if(closed_fd == 0) {
