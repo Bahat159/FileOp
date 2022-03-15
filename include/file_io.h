@@ -37,22 +37,23 @@ Project Type: Open-source
 #endif
 
 #ifndef FILE_IO_NULL
-#define FILE_IO_NULL    '\0'
+#define FILE_IO_NULL         '\0'
 #endif
-#define FILE_IO_ERROR -1
-
+#ifndef FILE_IO_ERROR
+#define FILE_IO_ERROR         -1
+#endif
 #ifndef FILE_IO_MULTIPLE_FLAGS
-#define MULTIPLE_FLAGS (READ_WRITE | O_CREAT | O_TRUNC)
+#define MULTIPLE_FLAGS        (READ_WRITE | O_CREAT | O_TRUNC)
 #endif
 
 #ifndef FILE_IO_SEEK_POS
-#define SEEK_TO_BEGINNING       SEEK_SET
-#define SEEK_TO_CURR_VAL        SEEK_CUR
-#define SEEK_TO_EOF             SEEK_END
+#define SEEK_TO_BEGINNING      SEEK_SET
+#define SEEK_TO_CURR_VAL       SEEK_CUR
+#define SEEK_TO_EOF            SEEK_END
 #endif
 
 #ifndef FILE_IO_BUFSIZE
-#define FILE_IO_BUFSIZE 4096
+#define FILE_IO_BUFSIZE        4096
 #endif
 
 
