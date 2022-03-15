@@ -66,3 +66,10 @@ static ssize_t read_from_file(int fd, void *buf, size_t nbytes);
 static ssize_t write_to_file(int fd, const void *buf, size_t nbytes);
 static ssize_t pread_with_multiple_process(int fd, void *buf, size_t nbytes, off_t offset);
 static ssize_t pwrite_with_multiple_process(int fd, const void *buf, size_t nbytes, off_t offset);
+
+
+
+/* File_io test wrapper */
+static void open_and_read_file(const char *open_file_name, void *buf);
+static void write_read_file_for_multiple_process(int fd, void *buffer, ssize_t nbytes, off_t pwrite_offset, off_t pread_offset);
+static void write_seek_file_for_single_process(int fd, void *buffer0, void *buffer1, off_t offset, size_t nbytes);
