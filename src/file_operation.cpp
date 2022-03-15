@@ -14,10 +14,9 @@ static int create_new_file(const char *path, mode_t mode) {
     */
     int file_to_create = creat(path,mode);
     if (file_to_create != FILE_IO_E_ERROR) {
-        std::cout<<"["<<path<<"] created successfully with: "<<mode<<" Descriptor"<<std::endl;
-    } else {
-        std::cout<<"Error creating filename: "<<path<<std::endl;
-        return file_to_create;
+        std::cout<<"["<<path<<"] created successfully with file mode: "<<mode<<std::endl;
+    } else if (file_to_create == FILE_IO_E_ERROR) {
+        return FILE_IO_E_ERROR;
     }
     return file_to_create;
 }
@@ -109,4 +108,25 @@ static ssize_t write_to_file(int fd, const void *buf, size_t nbytes) {
         }
     }
     return bytes_written;
+}
+
+
+/* 
+    Multiple process
+    to seek and perform I/O atomically: pread and pwrite.
+*/
+
+static ssize_t pread_with_multiple_process(int fd, void *buf, size_t nbytes, off_t offset) {
+    ssize_t pread_multiple_process;
+    if(fd && buf && nbytes && offset != FILE_IO_E_NULL) {
+        pread_multiple_process =  pread(fd, buf, nbytes, offset);
+        if(pread_multiple_process > FILE_IO_E_NULL) {
+            return pread_multiple_process;
+        } else if (pread_multiple_process == FILE_IO_E_NULL) {
+            return FILE_IO_E_EOF;
+        } else if( pread_multiple_process == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return pread_multiple_process;
 }
