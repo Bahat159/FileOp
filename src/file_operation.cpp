@@ -89,3 +89,18 @@ static ssize_t read_from_file(int fd, void *buf, size_t nbytes) {
     }
     return bytes_read;
 }
+
+static ssize_t write_to_file(int fd, const void *buf, size_t nbytes) {
+    ssize_t bytes_written;
+    if(fd && buf && nbytes != FILE_IO_E_NULL) {
+        bytes_written = write(fd, buf, nbytes);
+        if (bytes_written > FILE_IO_E_NULL) {
+            return bytes_written;
+        } else if (bytes_written == FILE_IO_E_NULL) {
+            return FILE_IO_E_ERROR;
+        } else if (bytes_written == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return bytes_written;
+}
