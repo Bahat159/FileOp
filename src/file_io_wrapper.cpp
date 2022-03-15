@@ -1,4 +1,5 @@
 #include "../include/file_io.h"
+#include "../src/file_operation.cpp"
 
 static void open_and_read_file(const char *open_file_name, void *buf) {
 
