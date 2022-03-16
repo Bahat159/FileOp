@@ -1,6 +1,5 @@
-#include "file_io.h"
-#include "file_permission.cpp"
-#include "file_io_wrapper.cpp"
+#include "../include/file_io.h"
+#include "../src/file_io_wrapper.cpp"
 
 /*
 Author: Busari Habibullaah
@@ -11,12 +10,6 @@ Project Type: Open-source
 
 int main(int argc, char *argv[]) {
     std::cout<<"File I/O Operation Call" <<std::endl;
-
-    const char *open_file_name= "open_file_name";
-
-    check_file_permission_type(FILE_IO_PERM_READ_WRITE);
-    check_file_descriptor(FILE_IO_PERM_CREATE_ONLY);
-    
     
     
     char buf[FILE_IO_BUFSIZE];
