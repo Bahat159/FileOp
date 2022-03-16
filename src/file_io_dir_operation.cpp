@@ -33,3 +33,16 @@ static int get_file_fstat(int fd, struct stat *buf) {
     }
     return get_fstat;
 }
+
+static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf) {
+    int get_lstat;
+    if(pathname && buf != FILE_IO_DIR_NULL) {
+        get_lstat = lstat(pathname, buf);
+        if(get_lstat == FILE_IO_DIR_NULL) {
+            return get_lstat;
+        } else {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return get_lstat;
+}
