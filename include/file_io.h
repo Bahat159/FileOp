@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fcntl.h>  
 #include <unistd.h>
+#include <sys/stat.h>
 
 /*
 Author: Busari Habibullaah
@@ -37,6 +38,7 @@ Project Type: Open-source
 #define FILE_IO_E_NULL                  '\0'
 #define FILE_IO_E_ERROR                 -1
 #define FILE_IO_E_EOF                   EOF
+#define FILE_IO_DIR_NULL                0
 #endif
 
 #ifndef FILE_IO_MULTIPLE_FLAGS
@@ -85,6 +87,8 @@ static int fdatasync_file_data(int fd);
 static int fsync_disk_io_buffercache_or_pagecache(int fd);
 static int set_and_get_file_descriptor_with_cmd(int fd, int cmd, int arg);
 
+/* File_io Dir operation */
+static int get_file_stat(const char *pathname, struct stat *buf);
 
 
 /* File_io test wrapper */
