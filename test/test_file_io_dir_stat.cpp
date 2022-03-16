@@ -1,6 +1,6 @@
-
 #include "../src/file_operation.cpp"
-#include "../src/file_io_dir_operation.cpp"
+///#include "../src/file_io_dir_operation.cpp"
+#include "../src/file_io_dir_wrapper.cpp"
 
 int main(int argc, char *argv[]){
     std::cout<<"File I/O Operation Call" <<std::endl;
@@ -9,9 +9,9 @@ int main(int argc, char *argv[]){
     struct stat buf;
 
     if (argc > 1){
-        int returned_value = get_file_stat (argv[1], &buf);
-        std::cout<<"get_file_stat returned: "<< returned_value<<std::endl;
-
+        
+        get_file_stat_with_mode(argv[1], &buf);
+        
         int fd = open_new_file(argv[2], FILE_IO_PERM_CREATE_ONLY);
         int ret_fstat = get_file_fstat(fd, &buf);
         std::cout<<"get_file_fstat returned: "<<ret_fstat<<std::endl;
