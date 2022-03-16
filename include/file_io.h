@@ -69,6 +69,17 @@ Project Type: Open-source
 #endif
 
 
+/* File Type */
+
+#ifndef FILE_IO_TYPE_
+#define FILE_IO_TYPE_IS_REG(mode)           S_ISREG(mode)
+#define FILE_IO_TYPE_IS_DIR(mode)           S_ISDIR(mode)
+#define FILE_IO_TYPE_IS_S_CHAR(mode)        S_ISCHR(mode)
+#define FILE_IO_TYPE_IS_S_BLK(mode)         S_ISBLK(mode)
+#define FILE_IO_TYPE_IS_FIFO(mode)          S_ISFIFO(mode)
+#define FILE_IO_TYPE_IS_SYM_LINK(mode)      S_ISLNK(mode)
+#define FILE_IO_TYPE_IS_SOCKET(mode)        S_ISSOCK(mode)   
+#endif
 
 static int close_opened_file(int fd);
 static void check_file_descriptor(char fd);
@@ -87,13 +98,16 @@ static int fdatasync_file_data(int fd);
 static int fsync_disk_io_buffercache_or_pagecache(int fd);
 static int set_and_get_file_descriptor_with_cmd(int fd, int cmd, int arg);
 
-/* File_io Dir operation */
-static int get_file_stat(const char *pathname, struct stat *buf);
-
-
 /* File_io test wrapper */
 static void open_and_read_file(const char *open_file_name, void *buf);
 static void write_read_file_for_multiple_process(int fd, void *buffer, ssize_t nbytes, off_t pwrite_offset, off_t pread_offset);
 static void write_seek_file_for_single_process(int fd, void *buffer0, void *buffer1, off_t offset, size_t nbytes);
 static void duplicate_process_file_descriptor (int fd);
 static void set_and_get_file_fd_properties(int fd, int cmd);
+
+
+/* File_io Dir operation */
+static int get_file_stat(const char *pathname, struct stat *buf);
+static int get_file_fstat(int fd, struct stat *buf);
+
+/* File_io Dir wrapper */
