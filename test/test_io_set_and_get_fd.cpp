@@ -9,7 +9,10 @@ int main(int argc, char *argv[]) {
         int fd = create_new_file(argv[1], FILE_IO_MULTIPLE_FLAGS); 
         std::cout<<"create_new_file file descriptor returned: "<<fd<<std::endl;
 
-        set_and_get_file_fd_properties(fd, FILE_IO_FCNTL_CMD_SET_RECORD_LOCK);
+        set_and_get_file_fd_properties(fd, FILE_IO_FCNTL_CMD_DUPLICATE_FD);
+        int record_l = set_and_get_file_descriptor_with_cmd(fd, FILE_IO_FCNTL_CMD_DUPLICATE_FD,FILE_IO_FCNTL_CMD_GET_FILE_STATUS_FLAG);
+
+        std::cout<<"file access mode: " <<record_l<<std::endl;
 
     } else {
         std::cout<<"Usage: ./file_io [ create_new_file name ] [ open_and_read_file name] optional"<<std::endl;
