@@ -72,14 +72,24 @@ Project Type: Open-source
 /* File Type */
 
 #ifndef FILE_IO_TYPE_
-#define FILE_IO_TYPE_IS_REG(mode)           S_ISREG(mode)
-#define FILE_IO_TYPE_IS_DIR(mode)           S_ISDIR(mode)
-#define FILE_IO_TYPE_IS_S_CHAR(mode)        S_ISCHR(mode)
-#define FILE_IO_TYPE_IS_S_BLK(mode)         S_ISBLK(mode)
-#define FILE_IO_TYPE_IS_FIFO(mode)          S_ISFIFO(mode)
-#define FILE_IO_TYPE_IS_SYM_LINK(mode)      S_ISLNK(mode)
-#define FILE_IO_TYPE_IS_SOCKET(mode)        S_ISSOCK(mode)   
+#define FILE_IO_TYPE_IS_REG(mode)            S_ISREG(mode)
+#define FILE_IO_TYPE_IS_DIR(mode)            S_ISDIR(mode)
+#define FILE_IO_TYPE_IS_SP_CHAR(mode)        S_ISCHR(mode)
+#define FILE_IO_TYPE_IS_SP_BLK(mode)         S_ISBLK(mode)
+#define FILE_IO_TYPE_IS_FIFO(mode)           S_ISFIFO(mode)
+#define FILE_IO_TYPE_IS_SYM_LINK(mode)       S_ISLNK(mode)
+#define FILE_IO_TYPE_IS_SOCKET(mode)         S_ISSOCK(mode)   
 #endif
+
+/* File Object Type */
+
+#ifndef FILE_IO_OBJ_TYPE_
+#define FILE_IO_OBJ_TYPE_MSG_Q(mode)        S_TYPEISMQ(mode)
+#define FILE_IO_OBJ_TYPE_SEM(mode)          S_TYPEISSEM(mode)
+#define FILE_IO_OBJ_TYPE_SH_MEM(mode)       S_TYPEISSHM(mode)
+#endif
+
+/* File_io operation */
 
 static int close_opened_file(int fd);
 static void check_file_descriptor(char fd);
@@ -110,7 +120,7 @@ static void set_and_get_file_fd_properties(int fd, int cmd);
 static int get_file_stat(const char *pathname, struct stat *buf);
 static int get_file_fstat(int fd, struct stat *buf);
 static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf);
+static int get_file_statistic_fstatat(int fd, const char *pathname, struct stat *buf, int flag);
 
 /* File_io Dir wrapper */
-
-
+static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
