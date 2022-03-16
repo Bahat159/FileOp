@@ -213,8 +213,10 @@ static int set_and_get_file_descriptor_with_cmd(int fd, int cmd, int arg = 0) {
         set_and_get_file_fd = fcntl(fd, cmd, arg);
         if (set_and_get_file_fd != FILE_IO_E_ERROR) {
             return set_and_get_file_fd;
-        } else if (set_and_get_file_fd == FILE_IO_E_ERROR) {
+        } else if (set_and_get_file_fd < FILE_IO_E_ERROR) {
             return FILE_IO_E_ERROR;
+        } else if (set_and_get_file_fd == FILE_IO_E_ERROR) {
+            return set_and_get_file_fd;
         }
     } else if ((arg != FILE_IO_E_NULL) && (arg == FILE_IO_FCNTL_CMD_GET_FILE_STATUS_FLAG)) {
         set_and_get_file_fd = fcntl(fd, cmd, arg);
@@ -235,12 +237,12 @@ static int set_and_get_file_descriptor_with_cmd(int fd, int cmd, int arg = 0) {
                 default:
                     std::cout<<"Unknow file access mode" <<std::endl;
             }
+            return set_and_get_file_fd;
         } else if (set_and_get_file_fd == FILE_IO_E_ERROR) {
+            return set_and_get_file_fd;
+        } else if (set_and_get_file_fd < FILE_IO_E_ERROR) {
             return FILE_IO_E_ERROR;
         }
-    } else {
-        return FILE_IO_E_ERROR;
     }
     return set_and_get_file_fd;
 }
-
