@@ -46,3 +46,8 @@ static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf) {
     }
     return get_lstat;
 }
+
+
+static int get_file_statistic_fstatat(int fd, const char *pathname, struct stat *buf, int flag){
+    return 0;
+}
