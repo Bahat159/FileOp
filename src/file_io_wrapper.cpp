@@ -53,6 +53,11 @@ static void duplicate_process_file_descriptor (int fd) {
     }
 }
 
+/* 
+    TODO
+    Not working fine
+*/
+
 static void set_and_get_file_fd_properties(int fd, int cmd) {
     int status;
     if (fd && cmd != FILE_IO_E_NULL) {
