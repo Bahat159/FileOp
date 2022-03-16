@@ -109,5 +109,8 @@ static void set_and_get_file_fd_properties(int fd, int cmd);
 /* File_io Dir operation */
 static int get_file_stat(const char *pathname, struct stat *buf);
 static int get_file_fstat(int fd, struct stat *buf);
+static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf);
 
 /* File_io Dir wrapper */
+
+
