@@ -83,7 +83,7 @@ static int duplicate_file_descriptor(int fd);
 static int duplicate_file_descriptor(int old_fd, int new_fd);
 static int fdatasync_file_data(int fd);
 static int fsync_disk_io_buffercache_or_pagecache(int fd);
-static int set_and_get_file_descripor_with_cmd(int fd, int cmd);
+static int set_and_get_file_descriptor_with_cmd(int fd, int cmd, int arg);
 
 
 
