@@ -206,3 +206,17 @@ static int fdatasync_file_data(int fd) {
     }
     return file_data_sync;
 }
+
+static int set_and_get_file_descripor_with_cmd(int fd, int cmd) {
+    int set_and_get_file_fd;
+    if (fd && cmd != FILE_IO_E_NULL) {
+        set_and_get_file_fd = fcntl(fd, cmd);
+        if (set_and_get_file_fd != FILE_IO_E_ERROR) {
+            return set_and_get_file_fd;
+        } else if (set_and_get_file_fd == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return set_and_get_file_fd;
+}
+
