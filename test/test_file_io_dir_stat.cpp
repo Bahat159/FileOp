@@ -16,6 +16,9 @@ int main(int argc, char *argv[]){
         int ret_fstat = get_file_fstat(fd, &buf);
         std::cout<<"get_file_fstat returned: "<<ret_fstat<<std::endl;
 
+        int ret_lstat = get_symbolic_link_file_stat(argv[1], &buf);
+        std::cout<<"get_symbolic_link_file_stat returned: "<<ret_lstat<<std::endl;
+
     } else {
         std::cout<<"Usage: ./test_file_io_dir_stat [ file_name  ]"<<std::endl;
         exit(-1);
