@@ -55,47 +55,47 @@ static void duplicate_process_file_descriptor (int fd) {
 
 static void set_and_get_file_fd_properties(int fd, int cmd) {
     int status;
-    if (cmd != FILE_IO_E_NULL) {
+    if (fd && cmd != FILE_IO_E_NULL) {
         switch (cmd)
         {
         case FILE_IO_FCNTL_CMD_DUPLICATE_FD:           
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Duplicate the file descriptor fd returned: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_DUPLICATE_FD_CLOEXEC:            
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Duplicate the file descriptor returned: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_GET_FD:          
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Get flags for fd returned: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_SET_FD:            
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Set the file descriptor flags for fd returned: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_GET_FILE_STATUS_FLAG:          
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Get file status flags for fd returned: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_SET_FILE_STATUS_FLAG:      
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Set file status flags to the value returned: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_GET_PROCESS_ID:      
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Get the process ID or process group ID receiving SIGIO and SIGURG: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_SET_PROCESS_ID:         
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Set the process ID or process group ID to receive SIGIO and SIGURG: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_GET_RECORD_LOCK:         
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Get Process Record Lock: "<<status<<std::endl;
             break;
         case FILE_IO_FCNTL_CMD_SET_RECORD_LOCK:         
-            status = set_and_get_file_descripor_with_cmd(fd, cmd);
+            status = set_and_get_file_descriptor_with_cmd(fd, cmd);
             std::cout<<"Set Process Record Lock: "<<status<<std::endl;
             break;
         default:
