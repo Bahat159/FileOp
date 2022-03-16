@@ -53,6 +53,19 @@ Project Type: Open-source
 #define FILE_IO_BUFSIZE                4096
 #endif
 
+#ifndef FILE_IO_FCNTL_CMD_
+#define FILE_IO_FCNTL_CMD_DUPLICATE_FD                   F_DUPFD         
+#define FILE_IO_FCNTL_CMD_DUPLICATE_FD_CLOEXEC           F_DUPFD_CLOEXEC 
+#define FILE_IO_FCNTL_CMD_GET_FD                         F_GETFD     
+#define FILE_IO_FCNTL_CMD_SET_FD                         F_SETFD     
+#define FILE_IO_FCNTL_CMD_GET_FILE_STATUS_FLAG           F_GETFL    
+#define FILE_IO_FCNTL_CMD_SET_FILE_STATUS_FLAG           F_SETFL    
+#define FILE_IO_FCNTL_CMD_GET_PROCESS_ID                 F_GETOWN    
+#define FILE_IO_FCNTL_CMD_SET_PROCESS_ID                 F_SETOWN
+#define FILE_IO_FCNTL_CMD_GET_RECORD_LOCK                F_GETLK
+#define FILE_IO_FCNTL_CMD_SET_RECORD_LOCK                F_SETLK
+#endif
+
 
 
 static int close_opened_file(int fd);
@@ -70,6 +83,7 @@ static int duplicate_file_descriptor(int fd);
 static int duplicate_file_descriptor(int old_fd, int new_fd);
 static int fdatasync_file_data(int fd);
 static int fsync_disk_io_buffercache_or_pagecache(int fd);
+static int set_and_get_file_descripor_with_cmd(int fd, int cmd);
 
 
 
@@ -78,3 +92,4 @@ static void open_and_read_file(const char *open_file_name, void *buf);
 static void write_read_file_for_multiple_process(int fd, void *buffer, ssize_t nbytes, off_t pwrite_offset, off_t pread_offset);
 static void write_seek_file_for_single_process(int fd, void *buffer0, void *buffer1, off_t offset, size_t nbytes);
 static void duplicate_process_file_descriptor (int fd);
+static void set_and_get_file_fd_properties(int fd, int cmd);
