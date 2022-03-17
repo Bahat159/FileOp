@@ -11,7 +11,7 @@ Project Type: Open-source
 */
 
 
-/* File permission */
+/* File Access Permission Flag  */
 
 #ifndef FILE_IO_PERM_
 #define FILE_IO_PERM_READ_ONLY           O_RDONLY
@@ -89,8 +89,29 @@ Project Type: Open-source
 #define FILE_IO_OBJ_TYPE_SH_MEM(mode)       S_TYPEISSHM(mode)
 #endif
 
-/* File_io operation */
+/* File Access Permission */
 
+#ifndef FILE_IO_ACCESS_PERM_
+#define FILE_IO_ACCESS_PERM_USR_RD      S_IRUSR
+#define FILE_IO_ACCESS_PERM_USR_WR      S_IWUSR
+#define FILE_IO_ACCESS_PERM_USR_EX      S_IXUSR
+#define FILE_IO_ACCESS_PERM_GRP_RD      S_IRGRP
+#define FILE_IO_ACCESS_PERM_GRP_WR      S_IWGRP
+#define FILE_IO_ACCESS_PERM_GRP_EX      S_IXGRP
+#define FILE_IO_ACCESS_PERM_OTH_RD      S_IROTH
+#define FILE_IO_ACCESS_PERM_OTH_WR      S_IWOTH
+#define FILE_IO_ACCESS_PERM_OTH_EX      S_IXOTH
+#endif
+
+/* File Access Mode */
+#ifndef FILE_IO_ACCESS_MODE_
+#define FILE_IO_ACCESS_MODE_READ        R_OK
+#define FILE_IO_ACCESS_MODE_WRITE       W_OK
+#define FILE_IO_ACCESS_MODE_EXC         X_OK
+#endif
+
+
+/* File_io operation */
 static int close_opened_file(int fd);
 static void check_file_descriptor(char fd);
 static void check_file_permission_type(char file_perm);
@@ -121,6 +142,7 @@ static int get_file_stat(const char *pathname, struct stat *buf);
 static int get_file_fstat(int fd, struct stat *buf);
 static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf);
 static int get_file_statistic_fstatat(int fd, const char *pathname, struct stat *buf, int flag);
+static int set_file_access_mode(const char *pathname, int mode);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
