@@ -51,3 +51,16 @@ static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf) {
 static int get_file_statistic_fstatat(int fd, const char *pathname, struct stat *buf, int flag){
     return 0;
 }
+
+static int set_file_access_mode(const char *pathname, int mode) {
+    int access_mode;
+    if(pathname && mode != FILE_IO_E_NULL) {
+        access_mode = access(pathname, mode);
+        if( access_mode == FILE_IO_E_NULL) {
+            return access_mode;
+        } else if(access_mode == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return access_mode;
+}
