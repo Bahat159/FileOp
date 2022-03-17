@@ -147,6 +147,8 @@ static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf);
 static int get_file_statistic_fstatat(int fd, const char *pathname, struct stat *buf, int flag);
 static int set_file_access_mode(const char *pathname, int mode);
 static int get_file_access_faccesssat(int fd, const char *pathname, int mode, int flag);
+static int change_open_file_access_permission_mode(int fd, mode_t mode);
+static int change_file_access_permission_mode (const char *pathname, mode_t mode);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
