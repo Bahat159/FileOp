@@ -185,3 +185,97 @@ static int truncate_open_file_data(int fd, off_t length) {
     }
     return truncate_open_data;
 }
+
+
+static int link_to_existing_file(const char *existing_file_path, const char *new_file_path) {
+    int link_new_file;
+    if (existing_file_path && new_file_path != FILE_IO_DIR_NULL) {
+        link_new_file = link(existing_file_path, new_file_path);
+        if (link_new_file == FILE_IO_DIR_NULL) {
+            return link_new_file;
+        } else if (link_new_file == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return link_new_file;
+}
+
+
+static int link_to_existing_opened_file(int efd, const char *existing_file_path, int nfd, const char *new_file_path, int flag) {
+    int link_opened_file;
+    if (efd && flag && nfd != FILE_IO_DIR_NULL) {
+        link_opened_file = linkat(efd, existing_file_path, nfd, new_file_path, flag);
+        if (link_opened_file == FILE_IO_DIR_NULL) {
+            return link_opened_file;
+        } else if (link_opened_file == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return link_opened_file;
+}
+
+static int unlink_file_path(const char *pathname) {
+    int unlink_file;
+    if (pathname != FILE_IO_DIR_NULL) {
+        unlink_file = unlink(pathname);
+        if (unlink_file == FILE_IO_DIR_NULL) {
+            return unlink_file;
+        } else if (unlink_file == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return unlink_file;
+}
+
+static int unlink_sym_file_path(int fd, const char *pathname, int flag) {
+    int unlink_sym_file;
+    if (fd && flag != FILE_IO_DIR_ERROR) {
+        unlink_sym_file = unlinkat(fd, pathname, flag);
+        if (unlink_sym_file == FILE_IO_DIR_NULL) {
+            return unlink_sym_file;
+        } else if (unlink_sym_file == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return unlink_sym_file;
+}
+
+static int remove_file(const char *pathname) {
+    int remove_file_or_dir;
+    if (pathname != FILE_IO_DIR_NULL) {
+        remove_file_or_dir = remove(pathname);
+        if (remove_file_or_dir == FILE_IO_DIR_NULL) {
+            return remove_file_or_dir;
+        } else if (remove_file_or_dir == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return remove_file_or_dir;
+}
+
+
+static int rename_file(const char *oldname, const char *newname) {
+    int rename_file_or_dir;
+    if (oldname && newname != FILE_IO_DIR_NULL) {
+        rename_file_or_dir = rename(oldname, newname);
+        if (rename_file_or_dir == FILE_IO_DIR_NULL) {
+            return rename_file_or_dir;
+        } else if (rename_file_or_dir == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return rename_file_or_dir;
+}
+
+static int rename_sym_file(int oldfd, const char *oldname, int newfd, const char *newname) {
+    int rename_sym_file_or_dir;
+    if (oldfd && newfd != FILE_IO_DIR_NULL) {
+        rename_sym_file_or_dir = renameat(oldfd, oldname, newfd, newname);
+        if (rename_sym_file_or_dir == FILE_IO_DIR_NULL) {
+            return rename_sym_file_or_dir;
+        } else if (rename_sym_file_or_dir == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return rename_sym_file_or_dir;
+}
