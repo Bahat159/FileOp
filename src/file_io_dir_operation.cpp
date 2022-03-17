@@ -78,3 +78,30 @@ static int get_file_access_faccesssat(int fd, const char *pathname, int mode, in
     }
     return access_faccesssat;
 }
+
+static int change_file_access_permission_mode (const char *pathname, mode_t mode) {
+    int change_chmod;
+    if (pathname && mode != FILE_IO_E_NULL) {
+        change_chmod = chmod(pathname, mode);
+        if(change_chmod == FILE_IO_E_NULL) {
+            return change_chmod;
+        } else if (change_chmod == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return change_chmod;
+}
+
+
+static int change_open_file_access_permission_mode(int fd, mode_t mode) {
+    int change_fchmod;
+    if(fd && mode != FILE_IO_E_NULL) {
+        change_fchmod = fchmod(fd, mode);
+        if (change_fchmod == FILE_IO_E_NULL) {
+            return change_fchmod;
+        } else if (change_fchmod == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return change_fchmod;
+}
