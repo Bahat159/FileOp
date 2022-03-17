@@ -89,7 +89,7 @@ Project Type: Open-source
 #define FILE_IO_OBJ_TYPE_SH_MEM(mode)       S_TYPEISSHM(mode)
 #endif
 
-/* File Access Permission */
+/* File Access Permission mode */
 
 #ifndef FILE_IO_ACCESS_PERM_
 #define FILE_IO_ACCESS_PERM_USR_RD      S_IRUSR
@@ -101,6 +101,9 @@ Project Type: Open-source
 #define FILE_IO_ACCESS_PERM_OTH_RD      S_IROTH
 #define FILE_IO_ACCESS_PERM_OTH_WR      S_IWOTH
 #define FILE_IO_ACCESS_PERM_OTH_EX      S_IXOTH
+#define FILE_IO_ACCESS_PERM_USR_ID      S_ISUID     // set-user-ID on execution
+#define FILE_IO_ACCESS_PERM_GRP_ID      S_ISGID     // set-group-ID on execution
+#define FILE_IO_ACCESS_PERM_SAV_TX      S_ISVTX     // saved-text (sticky bit)
 #endif
 
 /* File Access Mode */
