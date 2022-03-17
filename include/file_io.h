@@ -154,6 +154,8 @@ static int change_file_user_group_id(const char *pathname, uid_t owner, gid_t gr
 static int change_opened_file_user_group_id(int fd, uid_t owner, gid_t group);
 static int change_open_file_sym_user_group_id(int fd, const char *pathname, uid_t owner, gid_t group, int flag);
 static int change_file_sym_user_group_id_lchown(const char *pathname, uid_t owner, gid_t group);
+static int truncate_open_file_data(int fd, off_t length);
+static int truncate_file_data(const char *pathname, off_t length);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
