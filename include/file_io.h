@@ -156,6 +156,13 @@ static int change_open_file_sym_user_group_id(int fd, const char *pathname, uid_
 static int change_file_sym_user_group_id_lchown(const char *pathname, uid_t owner, gid_t group);
 static int truncate_open_file_data(int fd, off_t length);
 static int truncate_file_data(const char *pathname, off_t length);
+static int link_to_existing_file(const char *existing_file_path, const char *new_file_path);
+static int link_to_existing_opened_file(int efd, const char *existing_file_path, int nfd, const char *new_file_path, int flag);
+static int unlink_file_path(const char *pathname);
+static int unlink_sym_file_path(int fd, const char *pathname, int flag);
+static int remove_file(const char *pathname);
+static int rename_file(const char *oldname, const char *newname);
+static int rename_sym_file(int oldfd, const char *oldname, int newfd, const char *newname);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
