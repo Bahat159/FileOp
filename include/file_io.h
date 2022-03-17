@@ -143,6 +143,7 @@ static int get_file_fstat(int fd, struct stat *buf);
 static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf);
 static int get_file_statistic_fstatat(int fd, const char *pathname, struct stat *buf, int flag);
 static int set_file_access_mode(const char *pathname, int mode);
+static int get_file_access_faccesssat(int fd, const char *pathname, int mode, int flag);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
