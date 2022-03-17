@@ -39,6 +39,7 @@ Project Type: Open-source
 #define FILE_IO_E_ERROR                 -1
 #define FILE_IO_E_EOF                   EOF
 #define FILE_IO_DIR_NULL                0
+#define FILE_IO_DIR_ERROR               -1
 #endif
 
 #ifndef FILE_IO_MULTIPLE_FLAGS
@@ -146,9 +147,12 @@ static int get_file_fstat(int fd, struct stat *buf);
 static int get_symbolic_link_file_stat(const char *pathname, struct stat *buf);
 static int get_file_statistic_fstatat(int fd, const char *pathname, struct stat *buf, int flag);
 static int set_file_access_mode(const char *pathname, int mode);
-static int get_file_access_faccesssat(int fd, const char *pathname, int mode, int flag);
+static int get_file_access_mode(int fd, const char *pathname, int mode, int flag);
 static int change_open_file_access_permission_mode(int fd, mode_t mode);
 static int change_file_access_permission_mode (const char *pathname, mode_t mode);
+static int change_file_user_group_id(const char *pathname, uid_t owner, gid_t group);
+static int change_opened_file_user_group_id(int fd, uid_t owner, gid_t group);
+static int change_sym_file_user_group_id(int fd, const char *pathname, uid_t owner, gid_t group, int flag);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
