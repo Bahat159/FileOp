@@ -133,9 +133,9 @@ static int change_opened_file_user_group_id(int fd, uid_t owner, gid_t group) {
 }
 
 
-static int change_sym_file_user_group_id(int fd, const char *pathname, uid_t owner, gid_t group, int flag) {
+static int change_open_file_sym_user_group_id(int fd, const char *pathname, uid_t owner, gid_t group, int flag) {
     int change_sym_link_file_id;
-    if(flag && pathname != FILE_IO_DIR_NULL) {
+    if(flag && fd != FILE_IO_DIR_NULL) {
         change_sym_link_file_id = fchownat(fd, pathname, owner, group, flag);
         if(change_sym_link_file_id == FILE_IO_DIR_NULL) {
             return change_sym_link_file_id;
@@ -144,4 +144,17 @@ static int change_sym_file_user_group_id(int fd, const char *pathname, uid_t own
         }
     }
     return change_sym_link_file_id;
+}
+
+static int change_file_sym_user_group_id_lchown(const char *pathname, uid_t owner, gid_t group) {
+    int change_sym_link;
+    if (pathname && owner && group != FILE_IO_DIR_NULL) {
+        change_sym_link = lchown(pathname, owner, group);
+        if(change_sym_link == FILE_IO_DIR_NULL) {
+            return change_sym_link;
+        } else if (change_sym_link == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return change_sym_link;
 }
