@@ -64,3 +64,17 @@ static int set_file_access_mode(const char *pathname, int mode) {
     }
     return access_mode;
 }
+
+
+static int get_file_access_faccesssat(int fd, const char *pathname, int mode, int flag) {
+    int access_faccesssat;
+    if (fd && pathname && mode && flag != FILE_IO_E_NULL) {
+        access_faccesssat = faccessat(fd, pathname, mode, flag);
+        if (access_faccesssat == FILE_IO_E_ERROR) {
+            return access_faccesssat;
+        } else if (access_faccesssat == FILE_IO_E_ERROR) {
+            return FILE_IO_E_ERROR;
+        }
+    }
+    return access_faccesssat;
+}
