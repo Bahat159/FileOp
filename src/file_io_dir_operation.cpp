@@ -158,3 +158,30 @@ static int change_file_sym_user_group_id_lchown(const char *pathname, uid_t owne
     }
     return change_sym_link;
 }
+
+
+static int truncate_file_data(const char *pathname, off_t length) {
+    int truncate_data;
+    if(pathname && length != FILE_IO_DIR_NULL) {
+        truncate_data = truncate(pathname, length);
+        if (truncate_data == FILE_IO_DIR_NULL) {
+            return truncate_data;
+        } else if (truncate_data == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return truncate_data;
+}
+
+static int truncate_open_file_data(int fd, off_t length) {
+    int truncate_open_data;
+    if(fd && length != FILE_IO_DIR_NULL) {
+        truncate_open_data = ftruncate(fd, length);
+        if (truncate_open_data == FILE_IO_DIR_NULL) {
+            return truncate_open_data;
+        } else if (truncate_open_data == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return truncate_open_data;
+}
