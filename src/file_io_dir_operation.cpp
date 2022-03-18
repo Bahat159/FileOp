@@ -370,3 +370,43 @@ static int remove_dir(const char *pathname) {
     }
     return remove_directory;
 }
+
+
+static DIR *open_directory(const char *pathname) {
+    DIR *open_new_dir;
+    if (pathname != FILE_IO_DIR_NULL) {
+        open_new_dir = opendir(pathname);
+        if (open_new_dir != FILE_IO_DIR_NULL) {
+            return open_new_dir;
+        } else {
+            return FILE_IO_DIR_NULL;
+        }
+    }
+    return open_new_dir;
+}
+
+static DIR *open_directory_with_fd(int fd) {
+    DIR *open_dir_with_fd;
+    if (fd != FILE_IO_DIR_NULL) {
+        open_dir_with_fd = fdopendir(fd);
+        if (open_dir_with_fd != FILE_IO_DIR_NULL) {
+            return open_dir_with_fd;
+        } else {
+            return FILE_IO_DIR_NULL;
+        }
+    }
+    return open_dir_with_fd;
+}
+
+struct dirent *read_directory_file(DIR *dp) {
+    struct dirent *read_files;
+    if (dp != FILE_IO_DIR_NULL) {
+        read_files = readdir(dp);
+        if (read_files != FILE_IO_DIR_NULL || FILE_IO_DIR_ERROR) {
+            return read_files;
+        } else {
+            return FILE_IO_DIR_NULL;
+        }
+    }
+    return read_files;
+}
