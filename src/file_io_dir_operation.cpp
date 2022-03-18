@@ -304,3 +304,29 @@ static int create_opened_symbolic_link(const char *actualpath, int fd, const cha
     }
     return create_opened_sym_link;
 }
+
+static ssize_t read_sym_link(const char* pathname, char *buf, size_t bufsize) {
+    unsigned int read_symbolic_link;
+    if (pathname && buf != FILE_IO_DIR_NULL) {
+        read_symbolic_link = readlink(pathname, buf, bufsize);
+        if (read_symbolic_link == FILE_IO_DIR_NULL) {
+            return read_symbolic_link;
+        } else if (read_symbolic_link == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return read_symbolic_link;
+}
+
+static ssize_t read_sym_linkat(int fd, const char* pathname, char *buf, size_t bufsize) {
+    unsigned int read_opened_sym_link;
+    if (fd && pathname && buf && bufsize != FILE_IO_DIR_NULL) {
+        read_opened_sym_link = readlinkat(fd, pathname, buf, bufsize);
+        if (read_opened_sym_link == FILE_IO_DIR_NULL) {
+            return read_opened_sym_link;
+        } else if (read_opened_sym_link == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return read_opened_sym_link;
+}
