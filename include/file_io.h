@@ -174,6 +174,10 @@ static int remove_dir(const char *pathname);
 static DIR *open_directory(const char *pathname);
 static DIR *open_directory_with_fd(int fd);
 struct dirent *read_directory_file(DIR *dp);
+static void rewind_directory(DIR *dp);
+static int close_directory(DIR *dp);
+static long report_current_location_in_directory(DIR *dp);
+static void seek_into_directory(DIR *dp, long location);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
