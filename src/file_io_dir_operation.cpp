@@ -455,3 +455,29 @@ static void seek_into_directory(DIR *dp, long location) {
         std::cout<<"Error seeking into directory!"<<std::endl;
     }
 }
+
+static int change_directory(const char *pathname) {
+    int change_into_directory;
+    if (pathname != FILE_IO_DIR_NULL) {
+        change_into_directory = chdir(pathname);
+        if (change_into_directory == FILE_IO_DIR_NULL) {
+            return change_into_directory;
+        } else if (change_into_directory == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return change_into_directory;
+}
+
+static int change_into_opened_directory(int fd) {
+    int change_open_dir;
+    if (fd != FILE_IO_DIR_NULL) {
+        change_open_dir = fchdir(fd);
+        if (change_open_dir == FILE_IO_DIR_NULL) {
+            return change_open_dir;
+        } else if (change_open_dir == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return change_open_dir;
+}
