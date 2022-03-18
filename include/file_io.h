@@ -178,8 +178,8 @@ static void rewind_directory(DIR *dp);
 static int close_directory(DIR *dp);
 static long report_current_location_in_directory(DIR *dp);
 static void seek_into_directory(DIR *dp, long location);
+static int change_directory(const char *pathname);
+static int change_into_opened_directory(int fd);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
-
-
