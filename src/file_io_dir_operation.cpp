@@ -410,3 +410,48 @@ struct dirent *read_directory_file(DIR *dp) {
     }
     return read_files;
 }
+
+static void rewind_directory(DIR *dp) {
+    if (dp != FILE_IO_DIR_NULL) {
+        rewinddir(dp);
+    } else {
+        std::cout<<"Error: Function parameter can not be empty!"<<std::endl;
+    }
+}
+
+static int close_directory(DIR *dp) {
+    int close_dir;
+    if (dp != FILE_IO_DIR_NULL) {
+        close_dir = closedir(dp);
+        if (close_dir == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        } else if (close_dir == FILE_IO_DIR_NULL) {
+            return close_dir;
+        }
+    }
+    return close_dir;
+}
+
+/*
+    This function won't return anything 
+    if current location is 0 
+    or current location is -1
+*/
+static long report_current_location_in_directory(DIR *dp) {
+    long dir_location;
+    if (dp != FILE_IO_DIR_NULL) {
+        dir_location = telldir(dp);
+        if (dir_location != FILE_IO_DIR_NULL || FILE_IO_DIR_ERROR) {
+            return dir_location;
+        }
+    }
+    return dir_location;
+}
+
+static void seek_into_directory(DIR *dp, long location) {
+    if (dp && location != FILE_IO_DIR_NULL) {
+        seekdir(dp, location);
+    } else {
+        std::cout<<"Error seeking into directory!"<<std::endl;
+    }
+}
