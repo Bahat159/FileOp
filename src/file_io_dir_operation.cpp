@@ -279,3 +279,28 @@ static int rename_sym_file(int oldfd, const char *oldname, int newfd, const char
     }
     return rename_sym_file_or_dir;
 }
+
+static int create_symlink(const char *actualpath, const char *sympath) {
+    int create_symbolic_link;
+    if (actualpath && sympath != FILE_IO_DIR_NULL) {
+        create_symbolic_link = symlink(actualpath, sympath);
+        if (create_symbolic_link == FILE_IO_DIR_NULL) {
+            return create_symbolic_link;
+        } else if (create_symbolic_link == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    } return create_symbolic_link;
+}
+
+static int create_opened_symbolic_link(const char *actualpath, int fd, const char *sympath) {
+    int create_opened_sym_link;
+    if (fd && actualpath != FILE_IO_DIR_NULL) {
+        create_opened_sym_link = symlinkat(actualpath, fd, sympath);
+        if (create_opened_sym_link == FILE_IO_DIR_NULL) {
+            return create_opened_sym_link;
+        } else if (create_opened_sym_link == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return create_opened_sym_link;
+}
