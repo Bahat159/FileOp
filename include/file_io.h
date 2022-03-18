@@ -169,6 +169,9 @@ static ssize_t read_sym_link(const char* pathname, char *buf, size_t bufsize);
 static ssize_t read_sym_linkat(int fd, const char* pathname, char *buf, size_t bufsize);
 static int create_new_directory(const char *pathname, mode_t mode);
 static int create_and_open_new_directory(int fd, const char *pathname, mode_t mode);
+static int remove_dir(const char *pathname);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
+
+
