@@ -163,6 +163,7 @@ static int unlink_sym_file_path(int fd, const char *pathname, int flag);
 static int remove_file(const char *pathname);
 static int rename_file(const char *oldname, const char *newname);
 static int rename_sym_file(int oldfd, const char *oldname, int newfd, const char *newname);
-
+static int create_symlink(const char *actualpath, const char *sympath);
+static int create_opened_symbolic_link(const char *actualpath, int fd, const char *sympath);
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
