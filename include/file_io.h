@@ -167,7 +167,8 @@ static int create_symlink(const char *actualpath, const char *sympath);
 static int create_opened_symbolic_link(const char *actualpath, int fd, const char *sympath);
 static ssize_t read_sym_link(const char* pathname, char *buf, size_t bufsize);
 static ssize_t read_sym_linkat(int fd, const char* pathname, char *buf, size_t bufsize);
-
+static int create_new_directory(const char *pathname, mode_t mode);
+static int create_and_open_new_directory(int fd, const char *pathname, mode_t mode);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
