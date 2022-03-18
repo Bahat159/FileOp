@@ -2,6 +2,7 @@
 #include <fcntl.h>  
 #include <unistd.h>
 #include <sys/stat.h>
+#include <dirent.h>
 
 /*
 Author: Busari Habibullaah
@@ -170,6 +171,9 @@ static ssize_t read_sym_linkat(int fd, const char* pathname, char *buf, size_t b
 static int create_new_directory(const char *pathname, mode_t mode);
 static int create_and_open_new_directory(int fd, const char *pathname, mode_t mode);
 static int remove_dir(const char *pathname);
+static DIR *open_directory(const char *pathname);
+static DIR *open_directory_with_fd(int fd);
+struct dirent *read_directory_file(DIR *dp);
 
 /* File_io Dir wrapper */
 static void get_file_stat_with_mode(const char *pathname, struct stat *buf);
