@@ -356,3 +356,17 @@ static int create_and_open_new_directory(int fd, const char *pathname, mode_t mo
     }
     return create_and_open_dir;
 }
+
+
+static int remove_dir(const char *pathname) {
+    int remove_directory;
+    if (pathname != FILE_IO_DIR_NULL) {
+        remove_directory = rmdir(pathname);
+        if (remove_directory == FILE_IO_DIR_NULL) {
+            return remove_directory;
+        } else if (remove_directory == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return remove_directory;
+}
