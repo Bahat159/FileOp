@@ -330,3 +330,29 @@ static ssize_t read_sym_linkat(int fd, const char* pathname, char *buf, size_t b
     }
     return read_opened_sym_link;
 }
+
+static int create_new_directory(const char *pathname, mode_t mode) {
+    int create_dir;
+    if (pathname && mode != FILE_IO_DIR_NULL) {
+        create_dir = mkdir(pathname, mode);
+        if (create_dir == FILE_IO_DIR_NULL) {
+            return create_dir;
+        } else if (create_dir == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return create_dir;
+}
+
+static int create_and_open_new_directory(int fd, const char *pathname, mode_t mode) {
+    int create_and_open_dir;
+    if (fd && pathname && mode != FILE_IO_DIR_NULL) {
+        create_and_open_dir = mkdirat(fd, pathname, mode);
+        if (create_and_open_dir == FILE_IO_DIR_NULL) {
+            return create_and_open_dir;
+        } else if (create_and_open_dir == FILE_IO_DIR_ERROR) {
+            return FILE_IO_DIR_ERROR;
+        }
+    }
+    return create_and_open_dir;
+}
