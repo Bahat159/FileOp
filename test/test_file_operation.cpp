@@ -9,7 +9,7 @@ Project Type: Open-source
 */
 
 int main() {
-    std::cout<<"File I/O Operation Call" <<std::endl;
+    std::cout<<"FileOp I/O Call" <<std::endl;
 
     const char *create_file_name= "create_file_name";
     const char *open_file_name= "open_file_name";
@@ -25,10 +25,5 @@ int main() {
         std::cout<<"Seeking to current file offset"<<std::endl;
         std::cout<<seek_position<<std::endl;
     }
-    
-   
-    
-    
-
     return 0;
 }
