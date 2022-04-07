@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
         
 
     } else {
-        std::cout<<"Usage: ./file_io [ create_new_file name ] [ open_and_read_file name] optional"<<std::endl;
+        std::cout<<"Usage: ./file_io <create_new_file name> <open_and_read_file name | optional> "<<std::endl;
         exit(-1);
     }
 
